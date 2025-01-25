@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import heroImage from "../Assets/Images/hero/hero.webp";
+import heroImage from "../Assets/Images/hero/image.png";
 
 export default function Hero() {
   return (
@@ -8,49 +8,26 @@ export default function Hero() {
       sx={{
         width: "100%",
         height: "90vh",
-        backgroundPosition: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage: `url(${heroImage})`,
         backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
-      <Box
+      <Typography
         sx={{
-          width: "100%",
-          height: "90vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          textAlign: "center",
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          fontWeight: "900",
+          fontSize:"3rem",
+          textTransform: "uppercase",
+          color: "#fff",
         }}
+        gutterBottom
       >
-        <Typography
-          sx={{
-            fontWeight: "900",
-            fontSize: { xs: "50px", sm: "80px" },
-            textTransform: "uppercase",
-            color: "#000000b8",
-          }}
-          gutterBottom
-        >
-          Welcome to website
-        </Typography>
-        <Typography
-          gutterBottom
-          sx={{ fontWeight: "900", fontSize: "20px", color: "#000000b8" }}
-        >
-          sub title or tagile
-        </Typography>
-        <Typography
-          gutterBottom
-          sx={{ width: "80%", fontWeight: "600", color: "#000000b8" }}
-        >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit iusto
-          totam doloribus id tempore. Numquam a esse ut minima sapiente.
-        </Typography>
-      </Box>
+        Everything You Love,<br /> All in One Place.
+        <h4></h4>
+      </Typography>
     </Box>
   );
 }

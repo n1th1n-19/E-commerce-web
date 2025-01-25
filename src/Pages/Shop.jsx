@@ -11,6 +11,17 @@ export default function Shop() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  useEffect (()=>{
+    axios.get("https://dummyjson.com/products?limit=1000")
+    .then((res)=>{
+      setProducts(res.data.products)
+      console.log(res.data.products,111)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  })
+
   // useEffect(() => {
   //   let filtered = [...products];
 
@@ -66,11 +77,15 @@ export default function Shop() {
             />
             <Box sx={{ flexGrow: 1, p: 3 }}>
               <Grid2 container spacing={2}>
-
-                
-                <Grid2 size={{ xs: 12, sm: 4 }}>
-                  <ProductCard />
+                {products.map((item)=>{
+                  return(
+                    <Grid2 size={{ xs: 12, sm: 4 }}>
+                  <ProductCard product={item} />
                 </Grid2>
+                  )
+                })}
+                
+                
 
                 <Box sx={{ flexGrow: 1, p: 3 }}>
                   <Grid2 container spacing={2}>
