@@ -15,7 +15,7 @@ export default function Shop() {
     axios.get("https://dummyjson.com/products?limit=1000")
     .then((res)=>{
       setProducts(res.data.products)
-      // console.log(res.data.products,111)
+      console.log(res.data.products,111)
     })
     .catch((err)=>{
       console.log(err)

@@ -37,7 +37,7 @@ export default function Hero() {
       >
         Everything You Love,<br /> All in One Place.
       </Typography>
-      <Button color="success">Shop Now</Button>
+      <Button  color="success">Shop Now</Button>
     </Box>
   );
 }
