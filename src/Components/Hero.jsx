@@ -1,5 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import heroImage from "../Assets/Images/hero/hero.webp";
+
 export default function Hero() {
   return (
     <Box
@@ -19,7 +21,9 @@ export default function Hero() {
           alignItems: "center",
           flexDirection: "column",
           textAlign: "center",
-          backgroundImage: "linear-gradient(144deg, #8000ff4a, #00ff7178)",
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <Typography
