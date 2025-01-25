@@ -11,11 +11,18 @@ export default function Shop() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+
   useEffect (()=>{
     axios.get("https://dummyjson.com/products?limit=1000")
     .then((res)=>{
       setProducts(res.data.products)
-      console.log(res.data.products,111)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    axios.get("https://dummyjson.com/products/categories")
+    .then((res)=>{
+      setCategories(res.data)
     })
     .catch((err)=>{
       console.log(err)
@@ -60,9 +67,22 @@ export default function Shop() {
             >
               <Chip
                 color={selectedCategory === "All" ? "success" : "default"}
+                onClick={()=>setSelectedCategory("All")}
                 label={"All"}
                 component={Paper}
               />
+              {categories.map((category)=>{
+                return(
+                  <Chip
+                color={selectedCategory === category.slug ? "success" : "default"}
+                onClick={()=>setSelectedCategory(category.slug)}
+                label={category.name}
+                component={Paper}
+              />
+                )
+              })}
+              
+               
             </Box>
           </Box>
         </Grid2>
@@ -77,23 +97,28 @@ export default function Shop() {
             />
             <Box sx={{ flexGrow: 1, p: 3 }}>
               <Grid2 container spacing={2}>
-                {products.map((item)=>{
+                {products.length>0?
+                products.map((item)=>{
                   return(
                     <Grid2 size={{ xs: 12, sm: 4 }}>
                   <ProductCard product={item} />
                 </Grid2>
                   )
-                })}
+                }):
+                <Box sx={{ flexGrow: 1, p: 3 }}>
+                <Grid2 container spacing={2}>
+                  <Grid2 size={{ xs: 12, sm: 12 }}>
+                    <NoData />
+                  </Grid2>
+                </Grid2>
+              </Box>
+              }
+                
+              
                 
                 
 
-                <Box sx={{ flexGrow: 1, p: 3 }}>
-                  <Grid2 container spacing={2}>
-                    <Grid2 size={{ xs: 12, sm: 12 }}>
-                      <NoData />
-                    </Grid2>
-                  </Grid2>
-                </Box>
+          
               </Grid2>
             </Box>
           </Box>

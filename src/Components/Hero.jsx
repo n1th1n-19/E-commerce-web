@@ -1,27 +1,25 @@
-import { Box, Typography,Button } from "@mui/material";
-import React from "react";
-import heroImage from "../Assets/Images/hero/image.png";
-
-export default function Hero() {
+import React from 'react';
+import { Box, Typography, Button } from '@mui/material';
+ import heroImage from "../Assets/Images/hero/image.png"
+const Hero = () => {
   return (
     <Box
       sx={{
-        width: "100%",
-        height: "90vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "left",
-        flexDirection: "column",
         textAlign: "center",
         backgroundImage: `url(${heroImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh"
       }}
     >
       <Typography
         sx={{
           fontWeight: "900",
-          fontSize:"3rem",
+          fontSize: "3rem",
           textTransform: "uppercase",
           color: "#fff"
         }}
@@ -32,12 +30,25 @@ export default function Hero() {
       <Typography
         gutterBottom
         sx={{
-          fontWeight: "900", fontSize: "20px",color:"#FFD65A",
+          fontWeight: "900",
+          fontSize: "20px",
+          color: "#FFD65A",
         }}
       >
-        Everything You Love,<br /> All in One Place.
+        Discover the best deals and offers.
       </Typography>
-      <Button  color="success">Shop Now</Button>
+      <Button
+        sx={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          fontSize: "1.2rem",
+        }}
+        color="success"
+      >
+        Shop Now
+      </Button>
     </Box>
   );
 }
+
+export default Hero;
