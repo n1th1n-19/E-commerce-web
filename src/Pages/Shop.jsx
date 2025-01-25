@@ -12,41 +12,45 @@ export default function Shop() {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
 
-  useEffect (()=>{
+  useEffect(() => {
     axios.get("https://dummyjson.com/products?limit=1000")
-    .then((res)=>{
-      setProducts(res.data.products)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+      .then((res) => {
+        setProducts(res.data.products)
+        setFilteredProducts(res.data.products)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     axios.get("https://dummyjson.com/products/categories")
-    .then((res)=>{
-      setCategories(res.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+      .then((res) => {
+        setCategories(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   })
 
-  // useEffect(() => {
-  //   let filtered = [...products];
+  useEffect(() => {
+    let filtered = [...products];
 
-  //   // Filter by category
-  //   if (selectedCategory !== "All") {
-  //     filtered = filtered.filter(
-  //       (product) => product.category === selectedCategory
-  //     );
-  //   }
-  //   // Filter by search term
-  //   if (searchTerm) {
-  //     filtered = filtered.filter((product) =>
-  //       product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-  //   }
-  //   // Set the filtered products
-  //   setFilteredProducts(filtered);
-  // }, [selectedCategory, searchTerm, products]);
+    // Filter by category
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    // Set the filtered products
+    setFilteredProducts(filtered);
+  }, [selectedCategory, searchTerm, products]);
+  const handleChange =((e)=>{
+    setSearchTerm(e.target.value)
+  })
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid2 container spacing={2}>
@@ -67,22 +71,20 @@ export default function Shop() {
             >
               <Chip
                 color={selectedCategory === "All" ? "success" : "default"}
-                onClick={()=>setSelectedCategory("All")}
+                onClick={() => setSelectedCategory("All")}
                 label={"All"}
                 component={Paper}
               />
-              {categories.map((category)=>{
-                return(
+              {categories.map((category) => {
+                return (
                   <Chip
-                color={selectedCategory === category.slug ? "success" : "default"}
-                onClick={()=>setSelectedCategory(category.slug)}
-                label={category.name}
-                component={Paper}
-              />
+                    color={selectedCategory === category.slug ? "success" : "default"}
+                    onClick={() => setSelectedCategory(category.slug)}
+                    label={category.name}
+                    component={Paper}
+                  />
                 )
               })}
-              
-               
             </Box>
           </Box>
         </Grid2>
@@ -93,32 +95,28 @@ export default function Shop() {
               fullWidth
               type="search"
               label="Search product here"
+              onChange={handleChange}
+              value={searchTerm}
               placeholder="search product by title"
             />
             <Box sx={{ flexGrow: 1, p: 3 }}>
               <Grid2 container spacing={2}>
-                {products.length>0?
-                products.map((item)=>{
-                  return(
-                    <Grid2 size={{ xs: 12, sm: 4 }}>
-                  <ProductCard product={item} />
-                </Grid2>
-                  )
-                }):
-                <Box sx={{ flexGrow: 1, p: 3 }}>
-                <Grid2 container spacing={2}>
-                  <Grid2 size={{ xs: 12, sm: 12 }}>
-                    <NoData />
-                  </Grid2>
-                </Grid2>
-              </Box>
-              }
-                
-              
-                
-                
-
-          
+                {filteredProducts.length > 0 ?
+                  filteredProducts.map((item) => {
+                    return (
+                      <Grid2 size={{ xs: 12, sm: 4 }}>
+                        <ProductCard product={item} />
+                      </Grid2>
+                    )
+                  }) :
+                  <Box sx={{ flexGrow: 1, p: 3 }}>
+                    <Grid2 container spacing={2}>
+                      <Grid2 size={{ xs: 12, sm: 12 }}>
+                        <NoData />
+                      </Grid2>
+                    </Grid2>
+                  </Box>
+                }
               </Grid2>
             </Box>
           </Box>
