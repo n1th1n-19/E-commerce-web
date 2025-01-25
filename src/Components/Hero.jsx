@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography,Button } from "@mui/material";
 import React from "react";
 import heroImage from "../Assets/Images/hero/image.png";
 
@@ -10,7 +10,9 @@ export default function Hero() {
         height: "90vh",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "left",
+        flexDirection: "column",
+        textAlign: "center",
         backgroundImage: `url(${heroImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -21,13 +23,21 @@ export default function Hero() {
           fontWeight: "900",
           fontSize:"3rem",
           textTransform: "uppercase",
-          color: "#fff",
+          color: "#fff"
         }}
         gutterBottom
       >
         Everything You Love,<br /> All in One Place.
-        <h4></h4>
       </Typography>
+      <Typography
+        gutterBottom
+        sx={{
+          fontWeight: "900", fontSize: "20px",color:"#FFD65A",
+        }}
+      >
+        Everything You Love,<br /> All in One Place.
+      </Typography>
+      <Button color="success">Shop Now</Button>
     </Box>
   );
 }
