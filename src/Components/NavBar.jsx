@@ -120,7 +120,6 @@ function NavBar() {
               <Button
                 component={Link}
                 to={page.path}
-                key={index}
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
